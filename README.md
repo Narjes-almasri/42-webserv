@@ -4,8 +4,6 @@
 
 This educational systems-programming project explores how an HTTP server receives requests, routes them, and responds using low-level networking and non-blocking I/O.
 
-> This is a personal fork of the original team repository. The original project and commit history are preserved: [LeenAlmahthi/webserv-](https://github.com/LeenAlmahthi/webserv-).
-
 ## Project scope
 
 - Non-blocking client and server sockets managed with `poll()`
