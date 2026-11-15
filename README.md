@@ -1,120 +1,45 @@
-*This project has been created as part of the 42 curriculum by lalmahth, naalmasr, & skteifan.*
+# Webserv
 
-# webserv
+**A lightweight HTTP/1.1 server in C++98, built as a 42 team project.**
 
-## Description
+This educational systems-programming project explores how an HTTP server receives requests, routes them, and responds using low-level networking and non-blocking I/O.
 
-Webserv is a lightweight HTTP/1.1 web server written in C++98 as part of the 42 curriculum.
+> This is a personal fork of the original team repository. The original project and commit history are preserved: [LeenAlmahthi/webserv-](https://github.com/LeenAlmahthi/webserv-).
 
-The goal of this project is to understand how a real web server works by implementing core networking and web concepts from scratch using low-level system calls and non-blocking I/O.
+## Project scope
 
-The server supports:
-- Multiple server configurations and ports
-- HTTP methods: GET, POST, DELETE
-- Static file serving
-- Directory listing (autoindex)
-- File uploads
-- CGI execution (Python, PHP, Shell, etc.)
-- HTTP redirections
-- Custom error pages
-- Chunked transfer decoding
-- Non-blocking client handling using `poll()`
+- Non-blocking client and server sockets managed with `poll()`
+- Multiple server configurations and listening ports
+- `GET`, `POST`, and `DELETE` request handling
+- Static-file serving, index pages, and directory listings
+- Redirects and configurable error pages
+- File uploads and request-body limits
+- CGI execution configured by file extension
+- Chunked request-body decoding
 
-The project was developed following the constraints and requirements of the 42 `webserv` subject.
-
----
-
-## Instructions
-
-### Compilation
+## Build and run
 
 ```bash
 make
+./webserv configs/webserv.conf
 ```
 
-### Run the server
+The example configuration listens on `127.0.0.1:8080` and demonstrates routes for static files, CGI, uploads, and redirects. A second configuration is available at `configs/test.config`.
+
+## Try it
 
 ```bash
-./webserv webserv.conf
+curl -i http://127.0.0.1:8080/
+python3 tests/raw_requests.py
+bash tests/stress_static.sh
 ```
 
-### Example request
+The repository also includes CGI and upload test scripts. Ensure the configured interpreter paths and test prerequisites exist on your machine before running them.
 
-```bash
-curl -i http://localhost:8080/
-```
+## Team
 
-### CGI Example
+Built with **Narjes Almasri**, **Leen**, and **Sara Kteifan**. This fork keeps the team project’s original history and attribution.
 
-```bash
-curl -i http://localhost:8080/cgi/test.py
-```
+## Note
 
-### Upload Example
-
-```bash
-curl -i -X POST -F "file=@test.txt" http://localhost:8080/upload
-```
-
----
-
-## Features
-
-- Non-blocking server using `poll()`
-- Multiple simultaneous clients
-- Configurable routes and ports
-- CGI execution through configured interpreters
-- Chunked request body support
-- Upload handling with multipart/form-data
-- Custom error pages
-- Directory listing
-- Request size limiting
-- Basic timeout handling for CGI
-
----
-
-## Resources
-
-### Documentation & References
-
-- RFC 7230 — Hypertext Transfer Protocol (HTTP/1.1)
-- RFC 3875 — CGI/1.1 Specification
-- Linux man pages:
-  - `poll`
-  - `socket`
-  - `recv`
-  - `send`
-  - `fork`
-  - `execve`
-  - `pipe`
-- Beej’s Guide to Network Programming:
-  - https://beej.us/guide/bgnet/
-- MDN HTTP Documentation:
-  - https://developer.mozilla.org/en-US/docs/Web/HTTP
-
-### AI Usage
-
-AI tools were used during the development of this project for:
-- Debugging assistance
-- Understanding HTTP and CGI behavior
-- Reviewing architecture decisions
-- Suggesting edge-case tests
-- Explaining low-level networking concepts
-- Improving code organization and readability
-
-All implementation decisions, integration, debugging, and final validation were done manually by the project authors.
-
----
-
-## Notes
-
-This project was developed under the constraints of:
-- C++98 standard
-- Non-blocking I/O
-- Allowed functions specified by the subject
-
-The server was tested using:
-- `curl`
-- Web browsers
-- `valgrind`
-- Manual CGI and upload tests
+This is a 42 coursework project, not a production web server. The listed features describe project scope; validate behavior against your campus subject and evaluation tests before presenting it as fully compliant.
